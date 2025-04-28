@@ -1,1 +1,1281 @@
-[]
+[
+    {
+        "id": "8fef0d04a722d90a",
+        "type": "tab",
+        "label": "Stellio NGSI-LD Flow",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "49203917ef3dc53c",
+        "type": "tab",
+        "label": "Stellio Helper",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ba839d8586cc889c",
+        "type": "tab",
+        "label": "legacy",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9bb62de76d856a4d",
+        "type": "group",
+        "z": "49203917ef3dc53c",
+        "name": "Get Subscriptions",
+        "style": {
+            "stroke": "#ffefbf",
+            "fill": "#ffff7f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "2e36820119375021",
+            "080ab472d262251c",
+            "c75e48673f6853fc",
+            "bdc544139ebcbdf3"
+        ],
+        "x": 74,
+        "y": 79,
+        "w": 872,
+        "h": 82
+    },
+    {
+        "id": "6dd86781514dcb3a",
+        "type": "group",
+        "z": "49203917ef3dc53c",
+        "name": "Delete Subscription (Stellio)",
+        "style": {
+            "stroke": "#ffefbf",
+            "fill": "#ff7f7f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "10be74007c50d1aa",
+            "4e70e0215b15eddc",
+            "acbc43b901b13459",
+            "0846d8739a3a413e"
+        ],
+        "x": 74,
+        "y": 439,
+        "w": 872,
+        "h": 82
+    },
+    {
+        "id": "ac0b1ae0b3d6d0d5",
+        "type": "group",
+        "z": "49203917ef3dc53c",
+        "name": "Create subscription",
+        "style": {
+            "fill": "#c8e7a7",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "50f6c90273d64dec",
+            "9e13e3cb6787596e",
+            "af2b75ee75418e36",
+            "efc1dbde7ca33800",
+            "2a90adb0c7c87f69",
+            "bc522295a33c44e8",
+            "e22b47130cab0aff",
+            "922ae5c915dbfef5",
+            "dd05473a52b6b668",
+            "c345fc4b7d75c548"
+        ],
+        "x": 74,
+        "y": 179,
+        "w": 1252,
+        "h": 242
+    },
+    {
+        "id": "40411f41f2a1329e",
+        "type": "group",
+        "z": "49203917ef3dc53c",
+        "name": "Delete entity",
+        "style": {
+            "stroke": "#ffefbf",
+            "fill": "#ff7f7f",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "7a1e7516db7233dd",
+            "0a5fa65bb808e3f5",
+            "981249c2044a8134",
+            "773aa9ef6eb2d64d"
+        ],
+        "x": 74,
+        "y": 539,
+        "w": 872,
+        "h": 82
+    },
+    {
+        "id": "8547a3b818800650",
+        "type": "group",
+        "z": "8fef0d04a722d90a",
+        "name": "Send to platform",
+        "style": {
+            "fill": "#dbcbe7",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "ba03599af14974d5",
+            "bea5eb1b57b93a8c",
+            "48cb872bad447837",
+            "52635ab420ac9b57",
+            "e877cd13dd0095ee"
+        ],
+        "x": 634,
+        "y": 699,
+        "w": 512,
+        "h": 262
+    },
+    {
+        "id": "1027349dc5d78097",
+        "type": "group",
+        "z": "8fef0d04a722d90a",
+        "name": "Convert data",
+        "style": {
+            "fill": "#bfdbef",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "6efb4112f2682db9",
+            "941e9ab630dfd17e"
+        ],
+        "x": 434,
+        "y": 499,
+        "w": 632,
+        "h": 82
+    },
+    {
+        "id": "9605c339ce3ab23d",
+        "type": "group",
+        "z": "8fef0d04a722d90a",
+        "name": "Get data",
+        "style": {
+            "fill": "#ffefbf",
+            "label": true,
+            "color": "#000000"
+        },
+        "nodes": [
+            "d9e403815c9fdb85",
+            "a1a675b2abd9153e",
+            "a4198b9d17473f76",
+            "d177d55f74f6a1da",
+            "f24b9d3432965cb2",
+            "6ea3efc8d10523bd",
+            "70d926bb5fb55d8b",
+            "96b047d072ebd4d5"
+        ],
+        "x": 44,
+        "y": 99,
+        "w": 662,
+        "h": 322
+    },
+    {
+        "id": "6efb4112f2682db9",
+        "type": "function",
+        "z": "8fef0d04a722d90a",
+        "g": "1027349dc5d78097",
+        "name": "Prepare WaterObserved Datamodel",
+        "func": "let entities = []\n \n   \nconst datamodel = {\n    \"id\": \"urn:sdm:WaterObserved:konstanz:pegelstand-\" + msg.countingSiteInfo.number,\n    \"type\": \"WaterObserved\",\n    \"name\": {\n        \"type\": \"Property\",\n        \"value\": msg.countingSiteInfo.shortname\n    },\n    \"dateObserved\": {\n        \"type\": \"Property\",\n        \"value\": msg.measurement.timestamp\n    },\n    \"location\": {\n        \"type\": \"GeoProperty\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [msg.countingSiteInfo.longitude, msg.countingSiteInfo.latitude]\n        },\n    },\n    \"height\": {\n        \"type\": \"Property\",\n        \"value\": msg.measurement.value,\n        \"observedAt\": msg.measurement.timestamp\n    },\n    \"@context\": [\n        `https://context.${ env.get(\"DOMAIN\") }/main-context.jsonld`\n    ]\n}\n\n\n\nentities.push(datamodel)\n\n\nmsg.payload = entities\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 540,
+        "wires": [
+            [
+                "941e9ab630dfd17e",
+                "dca7dad5b77a9e5e"
+            ]
+        ]
+    },
+    {
+        "id": "d9e403815c9fdb85",
+        "type": "inject",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "timestamp",
+                "v": "",
+                "vt": "date"
+            }
+        ],
+        "repeat": "",
+        "crontab": "0 0-23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "a4198b9d17473f76"
+            ]
+        ]
+    },
+    {
+        "id": "a1a675b2abd9153e",
+        "type": "http request",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "GET Counting Site Info",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "d177d55f74f6a1da"
+            ]
+        ]
+    },
+    {
+        "id": "941e9ab630dfd17e",
+        "type": "debug",
+        "z": "8fef0d04a722d90a",
+        "g": "1027349dc5d78097",
+        "name": "debug data model",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "a4198b9d17473f76",
+        "type": "function",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "Prepare API Call",
+        "func": "msg.url = \"https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/aa9179c1-17ef-4c61-a48a-74193fa7bfdf.json?\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 260,
+        "wires": [
+            [
+                "a1a675b2abd9153e"
+            ]
+        ]
+    },
+    {
+        "id": "d177d55f74f6a1da",
+        "type": "function",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "Store Counting Site Info",
+        "func": "msg.countingSiteInfo = msg.payload;\nmsg.payload = \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 380,
+        "wires": [
+            [
+                "f24b9d3432965cb2"
+            ]
+        ]
+    },
+    {
+        "id": "f24b9d3432965cb2",
+        "type": "function",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "Prepare Counting Data API Call",
+        "func": "msg.url = \"https://pegelonline.wsv.de/webservices/rest-api/v2/stations/aa9179c1-17ef-4c61-a48a-74193fa7bfdf/W/currentmeasurement.json\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 200,
+        "wires": [
+            [
+                "6ea3efc8d10523bd"
+            ]
+        ]
+    },
+    {
+        "id": "6ea3efc8d10523bd",
+        "type": "http request",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "GET Counter Info",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 550,
+        "y": 260,
+        "wires": [
+            [
+                "96b047d072ebd4d5"
+            ]
+        ]
+    },
+    {
+        "id": "70d926bb5fb55d8b",
+        "type": "comment",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "Dauerhaftes befüllen Pegel Konstanz",
+        "info": "",
+        "x": 250,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "96b047d072ebd4d5",
+        "type": "function",
+        "z": "8fef0d04a722d90a",
+        "g": "9605c339ce3ab23d",
+        "name": "Store values",
+        "func": "msg.measurement = msg.payload;\nmsg.payload = \"\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 320,
+        "wires": [
+            [
+                "6efb4112f2682db9"
+            ]
+        ]
+    },
+    {
+        "id": "ba03599af14974d5",
+        "type": "debug",
+        "z": "8fef0d04a722d90a",
+        "g": "8547a3b818800650",
+        "name": "debug post",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "bea5eb1b57b93a8c",
+        "type": "function",
+        "z": "8fef0d04a722d90a",
+        "g": "8547a3b818800650",
+        "name": "Prepare POST",
+        "func": "msg.url =  env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/entityOperations/upsert?options=update\";\n\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 740,
+        "wires": [
+            [
+                "ba03599af14974d5",
+                "48cb872bad447837"
+            ]
+        ]
+    },
+    {
+        "id": "48cb872bad447837",
+        "type": "http request",
+        "z": "8fef0d04a722d90a",
+        "g": "8547a3b818800650",
+        "name": "POST to Stellio",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 760,
+        "y": 840,
+        "wires": [
+            [
+                "e877cd13dd0095ee",
+                "52635ab420ac9b57"
+            ]
+        ]
+    },
+    {
+        "id": "52635ab420ac9b57",
+        "type": "debug",
+        "z": "8fef0d04a722d90a",
+        "g": "8547a3b818800650",
+        "name": "timestamp",
+        "active": false,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "$fromMillis(msg.timestamp)",
+        "statusType": "jsonata",
+        "x": 990,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "e877cd13dd0095ee",
+        "type": "debug",
+        "z": "8fef0d04a722d90a",
+        "g": "8547a3b818800650",
+        "name": "Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "'status: ' & msg.statusCode",
+        "statusType": "jsonata",
+        "x": 980,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "dca7dad5b77a9e5e",
+        "type": "function",
+        "z": "8fef0d04a722d90a",
+        "name": "filter out undefined fields",
+        "func": "for (let [index, entity] of msg.payload.entries()) {\n    for (let [field, jsonValue] of Object.entries(entity)) {\n        if (field === 'id' || field === 'type' || field === '@context') {\n            continue\n        }\n        if (jsonValue.value === undefined || jsonValue.value === null) {\n            delete msg.payload[index][field];\n        }\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 640,
+        "wires": [
+            [
+                "bea5eb1b57b93a8c"
+            ]
+        ]
+    },
+    {
+        "id": "2e36820119375021",
+        "type": "inject",
+        "z": "49203917ef3dc53c",
+        "g": "9bb62de76d856a4d",
+        "name": "Go!",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "080ab472d262251c"
+            ]
+        ]
+    },
+    {
+        "id": "080ab472d262251c",
+        "type": "function",
+        "z": "49203917ef3dc53c",
+        "g": "9bb62de76d856a4d",
+        "name": "Setup GET Request",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/?limit=100\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 120,
+        "wires": [
+            [
+                "c75e48673f6853fc"
+            ]
+        ]
+    },
+    {
+        "id": "c75e48673f6853fc",
+        "type": "http request",
+        "z": "49203917ef3dc53c",
+        "g": "9bb62de76d856a4d",
+        "name": "http GET Request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 630,
+        "y": 120,
+        "wires": [
+            [
+                "bdc544139ebcbdf3"
+            ]
+        ]
+    },
+    {
+        "id": "bdc544139ebcbdf3",
+        "type": "debug",
+        "z": "49203917ef3dc53c",
+        "g": "9bb62de76d856a4d",
+        "name": "debug 61",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "10be74007c50d1aa",
+        "type": "inject",
+        "z": "49203917ef3dc53c",
+        "g": "6dd86781514dcb3a",
+        "name": "Go!",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 480,
+        "wires": [
+            [
+                "4e70e0215b15eddc"
+            ]
+        ]
+    },
+    {
+        "id": "4e70e0215b15eddc",
+        "type": "function",
+        "z": "49203917ef3dc53c",
+        "g": "6dd86781514dcb3a",
+        "name": "Setup Request",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/urn:ngsi-ld:Subscription:9b952583-0fb7-48e9-94d4-4c315623ae93\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "acbc43b901b13459"
+            ]
+        ]
+    },
+    {
+        "id": "acbc43b901b13459",
+        "type": "http request",
+        "z": "49203917ef3dc53c",
+        "g": "6dd86781514dcb3a",
+        "name": "DELETE",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 600,
+        "y": 480,
+        "wires": [
+            [
+                "0846d8739a3a413e"
+            ]
+        ]
+    },
+    {
+        "id": "0846d8739a3a413e",
+        "type": "debug",
+        "z": "49203917ef3dc53c",
+        "g": "6dd86781514dcb3a",
+        "name": "debug 84",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "50f6c90273d64dec",
+        "type": "http request",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "http POST Request",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 570,
+        "y": 380,
+        "wires": [
+            [
+                "af2b75ee75418e36"
+            ]
+        ]
+    },
+    {
+        "id": "9e13e3cb6787596e",
+        "type": "inject",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "Go!",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "bc522295a33c44e8"
+            ]
+        ]
+    },
+    {
+        "id": "af2b75ee75418e36",
+        "type": "debug",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "efc1dbde7ca33800",
+        "type": "function",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "Setup Request",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions\";\n\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\n\nmsg.payload = {\n   \t\"type\": \"Subscription\",\n\t\"subscriptionName\": \"Subscription for entity type \" + msg.dataModel + \".\",\n\t\"description\": \"This subscription triggers everytime an entity from type \" + msg.dataModel + \" is updated. Only watching attribute dateObserved to avoid duplications.\",\n   \t\"entities\": [\n\t\t{\n\t\t\t\"type\": msg.dataModel\n   \t\t}\n\t],\n    \"watchedAttributes\": [\"dateObserved\"],\n\t\"notificationTrigger\": [\"entityCreated\", \"attributeCreated\", \"attributeUpdated\"],\n    \"notification\": {\n       \t\"format\": \"normalized\",\n       \t\"endpoint\": {\n\t\t\t\t  \"uri\": env.get(\"QL_LD_API_URL\") + \"/v2/notify\",\n          \t\"accept\": \"application/json\"\n       \t}\n    },\n    \"@context\": [\n\t\t`https://context.${ env.get(\"DOMAIN\") }/main-context.jsonld`\n    ]\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 380,
+        "wires": [
+            [
+                "50f6c90273d64dec"
+            ]
+        ]
+    },
+    {
+        "id": "2a90adb0c7c87f69",
+        "type": "function",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "Check if already exists",
+        "func": "msg.sub_exists = false;\n\nfor (let i = 0; i < msg.payload.length; i++) {\n    const type = msg.payload[i].entities[0].type;\n\n    if (type.includes(msg.dataModel)){\n        msg.sub_exists = true;\n        node.warn(\"There is already a subscription for this type.\")\n        break;\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 260,
+        "wires": [
+            [
+                "922ae5c915dbfef5"
+            ]
+        ]
+    },
+    {
+        "id": "bc522295a33c44e8",
+        "type": "function",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "Setup GET Request",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/subscriptions/?limit=100\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nmsg.dataModel = \"WaterObserved\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 260,
+        "wires": [
+            [
+                "e22b47130cab0aff"
+            ]
+        ]
+    },
+    {
+        "id": "e22b47130cab0aff",
+        "type": "http request",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "http GET Request",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 610,
+        "y": 260,
+        "wires": [
+            [
+                "2a90adb0c7c87f69"
+            ]
+        ]
+    },
+    {
+        "id": "922ae5c915dbfef5",
+        "type": "switch",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "",
+        "property": "sub_exists",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 320,
+        "wires": [
+            [
+                "dd05473a52b6b668"
+            ],
+            [
+                "efc1dbde7ca33800"
+            ]
+        ]
+    },
+    {
+        "id": "dd05473a52b6b668",
+        "type": "debug",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "debug 83",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c345fc4b7d75c548",
+        "type": "comment",
+        "z": "49203917ef3dc53c",
+        "g": "ac0b1ae0b3d6d0d5",
+        "name": "Because of what Stellio does to the type used in subcriptions, the check is only checking if existing subscriptions are on a type containing a specified datamodel and not if it is equal to.",
+        "info": "",
+        "x": 700,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7a1e7516db7233dd",
+        "type": "inject",
+        "z": "49203917ef3dc53c",
+        "g": "40411f41f2a1329e",
+        "name": "Go!",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 580,
+        "wires": [
+            [
+                "0a5fa65bb808e3f5"
+            ]
+        ]
+    },
+    {
+        "id": "0a5fa65bb808e3f5",
+        "type": "function",
+        "z": "49203917ef3dc53c",
+        "g": "40411f41f2a1329e",
+        "name": "Setup Request",
+        "func": "msg.url = env.get(\"STELLIO_API_URL\") + \"/ngsi-ld/v1/entities/urn:sdm:WaterObserved:konstanz:pegelstand-906\";\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/ld+json';\nmsg.headers['NGSILD-Tenant'] = env.get(\"FIWARE_SERVICE\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 580,
+        "wires": [
+            [
+                "981249c2044a8134"
+            ]
+        ]
+    },
+    {
+        "id": "981249c2044a8134",
+        "type": "http request",
+        "z": "49203917ef3dc53c",
+        "g": "40411f41f2a1329e",
+        "name": "http GET Request",
+        "method": "DELETE",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 630,
+        "y": 580,
+        "wires": [
+            [
+                "773aa9ef6eb2d64d"
+            ]
+        ]
+    },
+    {
+        "id": "773aa9ef6eb2d64d",
+        "type": "debug",
+        "z": "49203917ef3dc53c",
+        "g": "40411f41f2a1329e",
+        "name": "debug 87",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "5e687066d99da95b",
+        "type": "function",
+        "z": "ba839d8586cc889c",
+        "name": "Prepare WaterObserved Datamodel",
+        "func": "let entities = []\n\n    let ngsi = {}\n\n    ngsi.id = \"Konstanz-Pegelstand-\" + msg.countingSiteInfo.number\n    ngsi.type = \"WaterObserved\"\n\n    let name = {}\n    name.type = \"String\"\n    name.value = msg.countingSiteInfo.shortname\n    ngsi.name = name\n\n    let dateObserved = {}\n    dateObserved.type = \"String\"\n    dateObserved.value = msg.value.timestamp\n    ngsi.dateObserved = dateObserved\n\n    let location = {}\n    location.type = \"geo:json\"\n    location.value = {\n        \"type\": \"Point\",\n        \"coordinates\": [msg.countingSiteInfo.longitude, msg.countingSiteInfo.latitude]\n    }\n    ngsi.location = location\n\n    let height = {}\n    height.type = \"Number\"\n    height.value = msg.value.value\n    \n   \n    entities.push(ngsi)\n\n\nmsg.ngsiEntities = entities\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 380,
+        "wires": [
+            [
+                "e0284a4d73c2f3e8"
+            ]
+        ]
+    },
+    {
+        "id": "ef99755fb0dcbf39",
+        "type": "inject",
+        "z": "ba839d8586cc889c",
+        "name": "Inject",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "d1862da9566bd116"
+            ]
+        ]
+    },
+    {
+        "id": "d2ae5c62ee54a08e",
+        "type": "http request",
+        "z": "ba839d8586cc889c",
+        "name": "GET Counting Site Info",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 290,
+        "y": 300,
+        "wires": [
+            [
+                "4ad51bed8dd2bbde"
+            ]
+        ]
+    },
+    {
+        "id": "234e1b1198d3e8c1",
+        "type": "debug",
+        "z": "ba839d8586cc889c",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d1862da9566bd116",
+        "type": "function",
+        "z": "ba839d8586cc889c",
+        "name": "Prepare API Call",
+        "func": "msg.url = \"https://www.pegelonline.wsv.de/webservices/rest-api/v2/stations/aa9179c1-17ef-4c61-a48a-74193fa7bfdf.json?\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "d2ae5c62ee54a08e"
+            ]
+        ]
+    },
+    {
+        "id": "4ad51bed8dd2bbde",
+        "type": "function",
+        "z": "ba839d8586cc889c",
+        "name": "Store Counting Site Info",
+        "func": "msg.countingSiteInfo = msg.payload;\nmsg.payload = \"\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "8b5659173cab6c96"
+            ]
+        ]
+    },
+    {
+        "id": "8b5659173cab6c96",
+        "type": "function",
+        "z": "ba839d8586cc889c",
+        "name": "Prepare Counting Data API Call",
+        "func": "msg.url = \"https://pegelonline.wsv.de/webservices/rest-api/v2/stations/aa9179c1-17ef-4c61-a48a-74193fa7bfdf/W/currentmeasurement.json\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 180,
+        "wires": [
+            [
+                "4125f4863a800d7b"
+            ]
+        ]
+    },
+    {
+        "id": "4125f4863a800d7b",
+        "type": "http request",
+        "z": "ba839d8586cc889c",
+        "name": "GET Counter Info",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 570,
+        "y": 240,
+        "wires": [
+            [
+                "f58dd15dd87ed74f"
+            ]
+        ]
+    },
+    {
+        "id": "e0284a4d73c2f3e8",
+        "type": "function",
+        "z": "ba839d8586cc889c",
+        "name": "Setup Orion Update Request",
+        "func": "msg.url = env.get(\"SC_ORION_SERVER\")+\"/v2/op/update\"\n\nmsg.headers = {};\nmsg.headers['Content-Type'] = 'application/json';\nmsg.headers['Fiware-Service'] = 'nodered1'\n\nmsg.payload = {}\n\nif (msg.ngsiEntities.length > 2000) {\n    const data = msg.ngsiEntities.slice(0, 2000)\n    const rest = msg.ngsiEntities.slice(2000)\n\n    msg.payload.entities = data\n    msg.ngsiEntities = rest\n\n    msg.remaining_data = true\n} else {\n    msg.payload.entities = msg.ngsiEntities;\n    msg.remaining_data = false\n}\n\nmsg.payload.actionType = 'append'\nmsg.payload = msg.payload;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 200,
+        "wires": [
+            [
+                "d9bf495088d3a6c2"
+            ]
+        ]
+    },
+    {
+        "id": "d9bf495088d3a6c2",
+        "type": "http request",
+        "z": "ba839d8586cc889c",
+        "name": "POST Data to Orion",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1000,
+        "y": 280,
+        "wires": [
+            [
+                "234e1b1198d3e8c1"
+            ]
+        ]
+    },
+    {
+        "id": "b7f78f4ae815b5d5",
+        "type": "comment",
+        "z": "ba839d8586cc889c",
+        "name": "Manuelles befüllen Pegel Konstanz",
+        "info": "",
+        "x": 260,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f58dd15dd87ed74f",
+        "type": "function",
+        "z": "ba839d8586cc889c",
+        "name": "Store values",
+        "func": "msg.value = msg.payload;\nmsg.payload = \"\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "5e687066d99da95b"
+            ]
+        ]
+    },
+    {
+        "id": "e71fb1528ba35150",
+        "type": "debug",
+        "z": "ba839d8586cc889c",
+        "name": "debug 23",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 100,
+        "wires": []
+    }
+]
